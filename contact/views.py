@@ -5,6 +5,11 @@ from django.core.mail import send_mail
 # Create your views here.
 
 def send_message(request):
+
+
+
+
+    welcome
     myinfo = Info.objects.first()
     if request.method=='POST':
         subject = request.POST['subject']
