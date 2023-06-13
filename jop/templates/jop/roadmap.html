@@ -1,0 +1,292 @@
+{% load static %}
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Chance Website</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <style>
+
+            #thbackinthetop h3
+            {
+                margin-top: 180px; 
+                font-size: 56px;
+                color: #fff;
+                font-weight: 400;
+                margin-bottom: 0;
+                text-transform: capitalize;
+            }
+
+                @media (max-width: 500px) {
+                #thbackinthetop h3 {
+                    font-size: 30px;
+                    margin-top: 200px; 
+                }
+                #thbackinthetop
+                {
+                    height: 50%;
+                }
+                } 
+
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+            <div class="container px-5">
+                <a class="navbar-brand" href="#!"><i class="fa-solid fa-briefcase"></i> Chance</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link hover-underline-animation" aria-current="page" href="{% url 'jops:home' %}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link hover-underline-animation" href="{% url 'jops:jop_list' %}">Browse Jop</a></li>
+                        <li class="nav-item"><a class="nav-link hover-underline-animation" href="{% url 'jops:about' %}">About</a></li>
+                        <li class="nav-item"><a class="nav-link hover-underline-animation" href="{% url 'jops:roadmap' %}">Road Map</a></li>
+                        <li class="nav-item"><a class="nav-link hover-underline-animation" href="{% url 'contact:contact' %}">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        {% if request.user.is_authenticated %}
+                        {% if user.is_staff == True %}
+                        <li class="mt-2">
+                            <a href="{% url 'jops:add_jop' %}"><button class="btn btn-outline-success">Post a Job</button></a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle theprofileedit" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img class="imgprofile" style="height: 40px; width: 40px; border-radius: 50%; margin: auto;" src="{{user.profile.image.url}}">
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="accounts/profile/{{user.username}}">Profile</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">LogOut</a></li>
+                            </ul>
+                        </li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'accounts:signup' %}"><button type="button" class="btn btn-secondary">Sign Up</button></a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'accounts:signin' %}"><button type="button" class="btn btn-outline-secondary">Login</button></a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- ######################### -->
+            <div id="thbackinthetop" style="background-image: url(../../../static/img/banner/bradcam.png); background-size: cover; background-position: center; width: 100%; height: 350px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>RoadMap</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- ############################## -->
+        <!-- <section class="py-3" id="next">
+            <div class="container px-5 my-3">
+                <div class="text-center">
+                    <h2 class="fw-bolder" id="thetoproad">Let's show some of the roadmap for some jops in the programming</h2>
+                </div>
+            </div>
+        </section> -->
+        <!-- ############################## -->
+        <!-- <div id="thbackinthetop1" style="background-image: url(../../../static/img/programming2.jpg); background-size: cover; background-position: center; width: 100%; height: 680px;">
+            <div class="container">
+                <div class="row">
+                </div>
+            </div>
+        </div> -->
+        <!-- ############################## -->
+        <section class="py-3 border-bottom" id="next">
+            <div class="container px-5 my-5">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bolder" style="color: rgb(71, 73, 137); ">We will tell and help you what is the path for all branches in the programming and how  you can achieve the goals and work in your favourit career.</h2>
+                    <p class="lead mb-0">We overview the path for all career...</p>
+                </div>
+                <div class="row gx-5">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="fa-solid fa-file-code"></i></div>
+                        <h2 class="h4 fw-bolder">Frontend Wep Development</h2>
+                        <p><span class="text-success">What is meant by Frontend Wep Development?</span>
+                            This refers to how a web page looks , and consider with in the user interface (UI) for the user and how can action with it</p>
+                        <h3 id="readmore1" class="collapse">The Map...</h3>
+                        <ul id="readmore1" class="collapse">
+                            <li>HTML =====> <a href="https://www.youtube.com/watch?v=PYjyg0LNTfE&list=PLDoPjvoNmBAwClZ1PDcjWilxp9YERUbNt" target="_blank">HTML</a></li>
+                            <li>CSS =====> <a href="https://www.youtube.com/watch?v=Iu1T7j2FA4M&list=PLDoPjvoNmBAzAeIcXA3_JsmSkPKOs9W-Y" target="_blank">CSS</a></li>
+                            <li>HTML5 =====> <a href="https://www.youtube.com/watch?v=6gjg5n9kyBU&list=PLDoPjvoNmBAyXCAQMLhDRZsLi_HurqTBZ" target="_blank">HTML5</a></li>
+                            <li>CSS3 =====> <a href="https://www.youtube.com/watch?v=aBlZ_2rGeb4&list=PLDoPjvoNmBAyEyQaHOHO1HJtmSgGt07VC" target="_blank">CSS3</a></li>
+                            <li>BootStrap ===3=> <a href="https://www.youtube.com/watch?v=auFVttzUoo8&list=PLDoPjvoNmBAw24EjNUp_88S1VeaNK8Cts" target="_blank">BootStrap</a></li>
+                            <li>Java Script =====> <a href="https://www.youtube.com/watch?v=GM6dQBmc-Xg&list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDYwVv" target="_blank">Java Script </a></li>
+                            <li>Learn at least one of this framework
+                                <ul>
+                                    <li>React =====> <a href="https://www.youtube.com/watch?v=LgB3j2y1b-4&list=PLtFbQRDJ11kEjXWZmwkOV-vfXmrEEsuEW" target="_blank">React</a></li>
+                                    <li>Veu =====> <a href="https://www.youtube.com/watch?v=13fv-xEAFmY&list=PLDoPjvoNmBAxr5AqK3Yz4DWYKVSmIFziw" target="_blank">Veu</a></li>
+                                    <li>Angular =====> <a href="https://www.youtube.com/watch?v=NMzl2pGOK_8&list=PL1BztTYDF-QNrtkvjkT6Wjc8es7QB4Gty" target="_blank">Angular</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <br>
+                        <button class="btn btn-outline-success mb-4" data-bs-toggle="collapse" data-bs-target="#readmore1">View The Map</button>
+                    </div>
+
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="fa-solid fa-database"></i></div>
+                        <h2 class="h4 fw-bolder">Backend Wep Development</h2>
+                        <p><span class="text-success">What is meant by Backend Wep Development?</span>
+                            This refers to how build and maintain the mechanisms that process data and perform actions on websites</p>
+                        <h3 id="readmore2" class="collapse">The Map...</h3>
+                        <ul id="readmore2" class="collapse">
+                            <li>HTML =====> <a href="https://www.youtube.com/watch?v=PYjyg0LNTfE&list=PLDoPjvoNmBAwClZ1PDcjWilxp9YERUbNt" target="_blank">HTML</a></li>
+                            <li>CSS =====> <a href="https://www.youtube.com/watch?v=Iu1T7j2FA4M&list=PLDoPjvoNmBAzAeIcXA3_JsmSkPKOs9W-Y" target="_blank">CSS</a></li>
+                            <li>HTML5 =====> <a href="https://www.youtube.com/watch?v=6gjg5n9kyBU&list=PLDoPjvoNmBAyXCAQMLhDRZsLi_HurqTBZ" target="_blank">HTML5</a></li>
+                            <li>CSS3 =====> <a href="https://www.youtube.com/watch?v=aBlZ_2rGeb4&list=PLDoPjvoNmBAyEyQaHOHO1HJtmSgGt07VC" target="_blank">CSS3</a></li>
+                            <li>Java Script =====> <a href="https://www.youtube.com/watch?v=GM6dQBmc-Xg&list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDYwVv" target="_blank">Java Script </a></li>
+                            <li>Learn at least one of this tracks to be backend developer
+                                <h5 class="text-primary">Programming Language + DataBase + FrameWork</h5>
+                                <h4>First Track</h4>
+                                <ul>
+                                    <li>PHP =====> <a href="https://www.youtube.com/watch?v=xcg9qq6SZ0w&list=PLDoPjvoNmBAy41u35AqJUrI-H83DObUDq" target="_blank">PHP</a></li>
+                                    <li>MySql =====> <a href="https://www.youtube.com/watch?v=DftlOK7fCtc&list=PLDoPjvoNmBAz6DT8SzQ1CODJTH-NIA7R9" target="_blank">MySql</a></li>
+                                    <li>Laravel =====> <a href="https://www.youtube.com/watch?v=bXjRQM_VK_I&list=PLDoPjvoNmBAy_mAhY0x8cHf8oSGPKsEKP" target="_blank">Laravel</a></li>
+                                </ul>
+                                <h4>Second Track</h4>
+                                <ul>
+                                    <li>C# =====> <a href="https://www.youtube.com/watch?v=CxGTRLkXUYg&list=PLqPejUavRNTWrbmE7fTvBC1HH-sAmz7c3" target="_blank">C#</a></li>
+                                    <li>SQL Server =====> <a href="https://www.youtube.com/watch?v=-_wLgK0IKfo&list=PL1DUmTEdeA6J6oDLTveTt4Z7E5qEfFluE" target="_blank">SQL Server</a></li>
+                                    <li>Asp.net =====> <a href="https://www.youtube.com/watch?v=TWcW9-rYCvw&list=PLwj1YcMhLRN1zbN2olMzvIBXP06FIwoes" target="_blank">Asp.net</a></li>
+                                </ul>
+                                <h4>Third Track</h4>
+                                <ul>
+                                    <li>Python =====> <a href="https://www.youtube.com/watch?v=h3VCQjyaLws&list=PLuXY3ddo_8nzrO74UeZQVZOb5-wIS6krJ" target="_blank">Python</a></li>
+                                    <li>Postgre Sql =====> <a href="https://www.youtube.com/watch?v=jM5xXx2SyyI&list=PLhiFu-f80eo_90Mx37BzcIl9UJCNfEdQ_" target="_blank">Postgre Sql</a></li>
+                                    <li>Django =====> <a href="https://www.youtube.com/watch?v=UPFKAG9rYOE&list=PLknwEmKsW8OtK_n48UOuYGxJPbSFrICxm" target="_blank">Django</a></li>
+                                </ul>
+                                <h4>Fourth Track</h4>
+                                <ul>
+                                    <li>Node(JS) =====> <a href="https://www.youtube.com/watch?v=2jbaDlQqcoY&list=PLGhZWewM_75LQf3KvHo6HHSclmDyDazl7" target="_blank">Node(JS)</a></li>
+                                    <li>Mongo DB =====> <a href="https://www.youtube.com/watch?v=rWQyb1RCLI4&list=PLd6o9p13Lc5387FWk_GXU0Rh5AhrBGod5" target="_blank">Mongo DB </a></li>
+                                    <li>Express JS =====> <a href="https://www.youtube.com/watch?v=39znK--Yo1o&list=PL_cUvD4qzbkwp6pxx27pqgohrsP8v1Wj2" target="_blank">Express JS</a></li>
+                                </ul>
+                                <h4>Fifth Track</h4>
+                                <ul>
+                                    <li>Java =====> <a href="https://www.youtube.com/watch?v=FbviMTJ_vP8&list=PL1DUmTEdeA6K7rdxKiWJq6JIxTvHalY8f" target="_blank">Java</a></li>
+                                    <li>Any DataBase do you want like (orcal - mysql ...)</li>
+                                    <li>Spring =====> <a href="https://www.youtube.com/watch?v=-mlN8ZA_WNw&list=PLMYF6NkLrdN8zjqzQWuShAx3fdXYHfp2G" target="_blank">Angular</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <br>
+                        <button class="btn btn-outline-success mb-4" data-bs-toggle="collapse" data-bs-target="#readmore2">View The Map</button>
+                    </div>
+
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                        <h2 class="h4 fw-bolder">Mobile Application</h2>
+                        <p><span class="text-success">What is meant by Mobile Application?</span>
+                            This is software application developed specifically for use on small, wireless computing devices, such as smartphones and tablets, rather than desktop or laptop computers</p>
+                        <h3 id="readmore3" class="collapse">The Map...</h3>
+                        <ul id="readmore3" class="collapse">
+                            We two kind of the operating system
+                            <li>
+                            <h2>Android</h2>
+                                <ul>
+                                    <h5>We have two language learn once one</h5>
+                                    <li>Java ====> <a href="https://www.youtube.com/watch?v=FbviMTJ_vP8&list=PL1DUmTEdeA6K7rdxKiWJq6JIxTvHalY8f" target="_blank">Java</a></li>
+                                    <li>Kotlin ====> <a href="https://www.youtube.com/watch?v=hR3D1odn2TQ&list=PLF8OvnCBlEY2w-zdVPozupapiKzLzpyUZ" target="_blank">Kotlin</a></li>
+                                </ul>
+                            <h2>IOS</h2>
+                                <ul>
+                                    <li>Flutter ====> <a href="https://www.youtube.com/watch?v=lRercKJaAes&list=PLw6Y5u47CYq47oDw63bMqkq06fjuoK_GJ" target="_blank">Flutter</a></li>
+                                    <li>Dart ====> <a href="https://www.youtube.com/watch?v=HVYlPAw70MU&list=PLMDrOnfT8EAj6Yjdki9OCLSwqdBs4xhQz" target="_blank">Dart</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <br>
+                        <button class="btn btn-outline-success mb-4" data-bs-toggle="collapse" data-bs-target="#readmore3">View The Map</button>
+                    </div>
+
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="fa-solid fa-audio-description"></i></div>
+                        <h2 class="h4 fw-bolder">2D Graphics</h2>
+                        <p><span class="text-success">What is meant 2D Graphics?</span>
+                            This is the computer-based generation of digital images—mostly from two-dimensional models (such as 2D geometric models, text, and digital images) and by techniques specific to them</p>
+                        <h3 id="readmore4" class="collapse">The Map...</h3>
+                        <ul id="readmore4" class="collapse">
+                            <li>Adope Illustrator =====> <a href="https://www.youtube.com/watch?v=agpFGqIA1zc&list=PLg9ps5Gu0MiC_T2Spv3tMmmQjhpCrKC7Z" target="_blank">Adope Illustrator</a></li>
+                            <li>Adope Photoshop =====> <a href="https://www.youtube.com/watch?v=0DEa_aIH6es&list=PLZ5zEGbaMXXWsB4rL674dSs3K4B_95pOk" target="_blank">Adope Photoshop</a></li>
+                            <li>Indesign =====> <a href="https://www.youtube.com/watch?v=NMDvti3tEXg&list=PLHoKeP3s3W91cGi6lihJ74W2VfjHJl4sg" target="_blank">Indesign</a></li>
+                        </ul>
+                        <br>
+                        <button class="btn btn-outline-success mb-4" data-bs-toggle="collapse" data-bs-target="#readmore4">View The Map</button>
+                    </div>
+
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="fa-solid fa-lock"></i></div>
+                        <h2 class="h4 fw-bolder">Cyper Security</h2>
+                        <p><span class="text-success">What is meant by Cyper Security?</span>
+                            This is how individuals and organisations reduce the risk of cyber attack. Cyber security's core function is to protect the devices we all use (smartphones, laptops, tablets and computers), and the services we access - both online and at work - from theft or damage</p>
+                        <h3 id="readmore5" class="collapse">The Map...</h3>
+                        <ul id="readmore5" class="collapse">
+                            <li>MS Windows Server Administration =====> <a href="https://www.youtube.com/watch?v=hYRNvdcmPfU&list=PLDxVq3TlR9y2sMXaL_yLp-r6pUpevgC-w" target="_blank">MS Windows Server Administration</a></li>
+                            <li>Linux Administration =====> <a href="https://www.youtube.com/watch?v=oD5Y4Gzr6vw&list=PLy1Fx2HfcmWBpD_PI4AQpjeDK5-5q6TG7" target="_blank">Linux Administration</a></li>
+                            <li>Firewall Technology =====> <a href="https://www.youtube.com/watch?v=WsETE6AXdPk&list=PLCIJjtzQPZJ_9l4pE6gB3kjcjbvStae7T" target="_blank">Firewall Technology</a></li>
+                        </ul>
+                        <br>
+                        <button class="btn btn-outline-success mb-4" data-bs-toggle="collapse" data-bs-target="#readmore5">View The Map</button>
+                    </div>
+
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="fa-solid fa-lightbulb"></i></div>
+                        <h2 class="h4 fw-bolder">Embedded Systems</h2>
+                        <p><span class="text-success">What is meant Embedded Systems?</span>
+                            This is a combination of computer hardware and software designed for a specific function. Embedded systems may also function within a larger system</p>
+                        <h3 id="readmore6" class="collapse">The Map...</h3>
+                        <ul id="readmore6" class="collapse">
+                            <li>C Programming =====> <a href="https://www.youtube.com/watch?v=KnvbUiSxvbM&list=PL98qAXLA6aftD9ZlnjpLhdQAOFI8xIB6e" target="_blank">C Programming</a></li>
+                            <li>ES Concepts =====> <a href="https://www.youtube.com/watch?v=tt1SkTpHUUU&list=PL_euSNU_eLbfIr88Sgtalv4W58mTW07V4" target="_blank">ES Concepts</a></li>
+                            <li>AVR Interfacing =====> <a href="https://www.youtube.com/watch?v=6bF0CZZmgWg&list=PLuiKQBaADtRgat7mv5lrezK2oDBE4x2H2" target="_blank">AVR Interfacing</a></li>
+                            <li>Software Testing =====> <a href="https://www.youtube.com/watch?v=rQZ-NbN3RLA&list=PLzNfs-3kBUJllCa8_6pLYDMnIlg6Lfvu4" target="_blank">Software Testing</a></li>
+                            <li>Automotive Bus Tech =====> <a href="https://www.youtube.com/watch?v=6O6Jzrj5HDs&list=PL_qYi3X0_AN5IFMFTvQhwVQpKeWEruDIN" target="_blank">Automotive Bus Tech</a></li>
+                            <li>ES Tooling =====> <a href="https://www.youtube.com/watch?v=gAyNR1fJBVA&list=PLypBE_HAP4pNxW6E4GKak8cGhk2STD6VX" target="_blank">ES Tooling </a></li>
+                            <li>Real Time OS =====> <a href="https://www.youtube.com/watch?v=JpAKGQFi69k&list=PLQ55UVAFO9LWB1T8izPuWo02xKwB-lBqU" target="_blank">Real Time OS </a></li>
+                        </ul>
+                        <br>
+                        <button class="btn btn-outline-success mb-4" data-bs-toggle="collapse" data-bs-target="#readmore6">View The Map</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ################################ -->
+        <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa-solid fa-jet-fighter-up"></i></button>
+        <!-- ############################### -->
+        <footer class="py-4 bg-dark">
+            <div class="container px-5"><p class="m-0 text-center text-white">Copyright &copy; Reserved Your Website By Chance Team 2023</p></div>
+            <div class="text-center mt-3 thefooter">
+                <a target="_blank" href="https://www.facebook.com/profile.php?id=100070098455466"><i class="fa-brands fa-facebook"></i></a>
+                <a target="_blank" href="https://github.com/Abdelmaksoude"><i class="fa-brands fa-github"></i></a>
+                <a target="_blank" href="https://www.linkedin.com/in/abdelmaqsoud-gomma-42243b224/"><i class="fa-brands fa-linkedin"></i></a>
+                <a target="_blank" href="https://www.instagram.com/abdelmaksoudeid/"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </footer>
+
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'js/scripts.js' %}"></script>
+            <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+            <!-- * *                               SB Forms JS                               * *-->
+            <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+            <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>

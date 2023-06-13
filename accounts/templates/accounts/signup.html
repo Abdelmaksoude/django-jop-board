@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animated Login From</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="{% static 'css/stylee.css' %}" />
+</head>
+<body>
+    <div class="login_form_container2">
+        <div class="login_form">
+            <h2>Sign Up</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="input_group">
+                    <i class="fa fa-user"></i>
+                    <input type="text" name="username" placeholder="Username" class="input_text" autocomplete="off" required />
+                </div>
+                <div class="input_group">
+                    <i class="fa fa-user"></i>
+                    <input type="email" name="email" placeholder="Email" class="input_text" autocomplete="off" required />
+                </div>
+                <div class="input_group">
+                    <i class="fa fa-unlock-alt"></i>
+                    <input type="password" name="password1" placeholder="Password" class="input_text" autocomplete="off" required />
+                </div>
+                <div class="input_group">
+                    <i class="fa fa-unlock-alt"></i>
+                    <input type="password" name="password2" placeholder="Confirm Password" class="input_text" autocomplete="off" required />
+                </div>
+                <div class="input_group">
+                    <input type="checkbox" name="is_company" id="is_company" />
+                    <label for="is_company">&nbsp;Is Company</label>
+                </div>
+                <div class="button_group" id="login_button">
+                    <button type="submit">Sign Up</button>
+                </div>
+            </form>
+            {% for message in messages %}
+            <h5 style="text-align: center; margin-top: 15px; color: red;">{{message}}</h5>
+            {% endfor %}
+            <div class="fotter">
+                <a>Do You have account ...!</a>
+                <a href="{% url 'accounts:signin' %}">Login</a>
+            </div>
+            </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="{% static 'js/scriptt.js' %}"></script>
+</body>
+</html>

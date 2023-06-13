@@ -14,6 +14,6 @@ def send_message(request):
             subject,
             message,
             settings.EMAIL_HOST_USER,
-            [email],
+            ['abdelmaqsoudgomma@gmail.com'],
         )
     return render(request , 'contact/contact.html' , {'myinfo':myinfo})

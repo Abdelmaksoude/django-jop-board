@@ -6,7 +6,7 @@ from .models import Profile
 class SignupForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['username' , 'email' , 'password1' , 'password2']
+        fields = ['username' , 'email' , 'password1' , 'password2' ]
 
 class UserForm(forms.ModelForm):
     class Meta:
@@ -16,4 +16,4 @@ class UserForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['city' , 'phone_number' , 'image']
+        fields = ['image' , 'bio' , 'nationality' , 'gender' , 'birthday' ,  'country' , 'city' , 'phone_number' , 'typejop' , 'categories' , 'salary' , 'experianceyears' , 'leveleducation' , 'faculty' , 'department' , 'graduationyear' , 'languages' ,  'cv' ,  'experiance1' , 'experiance2' , 'githublink' , 'linkedinlink']

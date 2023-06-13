@@ -1,0 +1,322 @@
+{% load static %}
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Chance Website</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+        <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <style>
+
+            #thbackinthetop h3
+            {
+                margin-top: 180px; 
+                font-size: 56px;
+                color: #fff;
+                font-weight: 400;
+                margin-bottom: 0;
+                text-transform: capitalize;
+            }
+            @media (max-width: 500px) {
+            #thbackinthetop h3 {
+                font-size: 30px;
+                margin-top: 200px; 
+            }
+            #thbackinthetop
+            {
+                height: 50%;
+            }
+            }
+            .thecommentname
+            {
+                color: rgb(0, 0, 115);
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
+            } 
+            .thecomment
+            {
+                margin-left: 55px;
+                font-weight: bold;
+                font-family: Arial, Helvetica, sans-serif;
+                color: blueviolet;
+            }
+            .thedate
+            {
+                margin-left: 5px;
+                font-size: small;
+                font-weight: bold;
+                font-family: 'Times New Roman', Times, serif;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+            <div class="container px-5">
+                <a class="navbar-brand" href="#!"><i class="fa-solid fa-briefcase"></i> Chance</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link hover-underline-animation" aria-current="page" href="{% url 'jops:home' %}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link hover-underline-animation" href="{% url 'jops:jop_list' %}">Browse Jop</a></li>
+                        <li class="nav-item"><a class="nav-link hover-underline-animation" href="{% url 'jops:about' %}">About</a></li>
+                        <li class="nav-item"><a class="nav-link hover-underline-animation" href="{% url 'jops:roadmap' %}">Road Map</a></li>
+                        <li class="nav-item"><a class="nav-link hover-underline-animation" href="{% url 'contact:contact' %}">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        {% if request.user.is_authenticated %}
+                        {% if user.is_staff == True %}
+                        <li class="mt-2">
+                            <a href="{% url 'jops:add_jop' %}"><button class="btn btn-outline-success">Post a Job</button></a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle theprofileedit" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img class="imgprofile" style="height: 40px; width: 40px; border-radius: 50%; margin: auto;" src="{{user.profile.image.url}}">
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="accounts/profile/{{user.username}}">Profile</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">LogOut</a></li>
+                            </ul>
+                        </li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'accounts:signup' %}"><button type="button" class="btn btn-secondary">Sign Up</button></a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'accounts:signin' %}"><button type="button" class="btn btn-outline-secondary">Login</button></a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- ######################### -->
+        <div id="thbackinthetop" style="background-image: url(../../../static/img/banner/bradcam.png); background-size: cover; background-position: center; width: 100%; height: 350px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>About Us</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ######################### -->
+        <section class="py-5 bg-light">
+            <div class="container px-5 my-5">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bolder text-primary">Let's start with the aim of the website</h2>
+                    <p class="text-center text-secondary">Let's Clarifies the aim of the application to avilable the useability to use the application...</p>
+                </div>
+                <div class="row gx-5 justify-content-center">
+                    
+                    <div class="col-lg-6 col-xl-4">
+                        <div class="card mb-5 mb-xl-0 anyhover">
+                            <div class="card-body p-5">
+                                <div class="feature bg-secondary bg-gradient text-light rounded-3 mb-3"><i class="fa-solid fa-user-tie"></i></div>
+                                <h2 class="h4 fw-bolder text-primary">Search for jop</h2>
+                                <p><span class="text-success display-block">This is consider with person</span><br>In this department we consider for the person that not have any jop and he want to find the suitable jop for him and live the good life.</p>
+                                <a class="text-decoration-none" href="{% url 'jops:jop_list' %}">
+                                    <button class="btn btn-outline-success">Go to see more jops<i class="bi bi-arrow-right"></i></button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6 col-xl-4">
+                        <div class="card mb-5 mb-xl-0 anyhover">
+                            <div class="card-body p-5">
+                                <div class="feature bg-secondary bg-gradient text-light rounded-3 mb-3"><i class="fa-solid fa-user-plus"></i></div>
+                                <h2 class="h4 fw-bolder text-primary">Search for employees</h2>
+                                <p><span class="text-success display-block">This is consider with company</span><br>In this department we consider for the person that have jop and he want to find the suitable persons to make the jop.</p>
+                                <a class="text-decoration-none" href="{% url 'jops:jop_list' %}">
+                                    <button class="btn btn-outline-success">Go to see more jops<i class="bi bi-arrow-right"></i></button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ######################### -->
+        <div class="slide-container swiper">
+            <h2 class="text-center text-primary">Team Members</h2>
+            <p class="text-center text-secondary">They are the team members for chance application...</p>
+            <div class="slide-content">
+                <div class="card-wrapper swiper-wrapper">
+                    <div class="card swiper-slide">
+                        <div class="image-content">
+                            <span class="overlay"></span>
+
+                            <div class="card-image">
+                                <img src="{% static 'img/abdelmaksoud4.jpg' %}" alt="" class="card-img">
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <h2 class="name">Eng: Abdelmaksoud Eid</h2>
+                            <p class="description">I am a graduate of the Faculty of Computers and Information, Department of Computer Science</p>
+                            <h6 class="text-primary">I am Backend Developer</h6>
+                            <p class="description">Email: abdelmaksoudgomma@gmail.com</p>
+
+                            <div class="display-flex">
+                            <button class="button"><a class="text-light text-decoration-none" href="https://github.com/Abdelmaksoude" target="_blank">GitHub</a></button>
+                            <button class="button"><a class="text-light text-decoration-none" href="https://www.linkedin.com/in/abdelmaqsoud-gomma-42243b224/" target="_blank">LinkedIn</a></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card swiper-slide">
+                        <div class="image-content">
+                            <span class="overlay"></span>
+
+                            <div class="card-image">
+                                <img src="{% static 'img/abdalla.jpg' %}" alt="" class="card-img">
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <h2 class="name">Eng: Abdalla Shehap</h2>
+                            <p class="description">I am a graduate of the Faculty of Computers and Information, Department of Computer Science</p>
+                            <h6 class="text-primary">I am Backend Developer</h6>
+                            <p class="description">Email: abdelmaksoudgomma@gmail.com</p>
+                            <div class="display-flex">
+                                <button class="button"><a class="text-light text-decoration-none" href="https://github.com/Abdelmaksoude" target="_blank">GitHub</a></button>
+                                <button class="button"><a class="text-light text-decoration-none" href="https://www.linkedin.com/in/abdelmaqsoud-gomma-42243b224/" target="_blank">LinkedIn</a></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card swiper-slide">
+                        <div class="image-content">
+                            <span class="overlay"></span>
+
+                            <div class="card-image">
+                                <img src="{% static 'img/alaa.jpg' %}" alt="" class="card-img">
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <h2 class="name">Eng: Alaa Abo Zekrey</h2>
+                            <p class="description">I am a graduate of the Faculty of Computers and Information, Department of Computer Science</p>
+                            <h6 class="text-primary">I am Graphic Designer</h6>
+                            <p class="description">Email: abdelmaksoudgomma@gmail.com</p>
+                            <div class="display-flex">
+                                <button class="button"><a class="text-light text-decoration-none" href="https://github.com/Abdelmaksoude" target="_blank">GitHub</a></button>
+                                <button class="button"><a class="text-light text-decoration-none" href="https://www.linkedin.com/in/abdelmaqsoud-gomma-42243b224/" target="_blank">LinkedIn</a></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card swiper-slide">
+                        <div class="image-content">
+                            <span class="overlay"></span>
+
+                            <div class="card-image">
+                                <img src="" alt="" class="card-img">
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <h2 class="name">Eng: Rawan Elsayed</h2>
+                            <p class="description">I am a graduate of the Faculty of Computers and Information, Department of Computer Science</p>
+                            <h6 class="text-primary">I am Frontend Developer</h6>
+                            <p class="description">Email: abdelmaksoudgomma@gmail.com</p>
+                            <div class="display-flex">
+                                <button class="button"><a class="text-light text-decoration-none" href="https://github.com/Abdelmaksoude" target="_blank">GitHub</a></button>
+                                <button class="button"><a class="text-light text-decoration-none" href="https://www.linkedin.com/in/abdelmaqsoud-gomma-42243b224/" target="_blank">LinkedIn</a></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card swiper-slide">
+                        <div class="image-content">
+                            <span class="overlay"></span>
+
+                            <div class="card-image">
+                                <img src="" alt="" class="card-img">
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <h2 class="name">Eng: Hager Elrefey</h2>
+                            <p class="description">I am a graduate of the Faculty of Computers and Information, Department of Computer Science</p>
+                            <h6 class="text-primary">I am Frontend Developer</h6>
+                            <p class="description">Email: abdelmaksoudgomma@gmail.com</p>
+                            <div class="display-flex">
+                                <button class="button"><a class="text-light text-decoration-none" href="https://github.com/Abdelmaksoude" target="_blank">GitHub</a></button>
+                                <button class="button"><a class="text-light text-decoration-none" href="https://www.linkedin.com/in/abdelmaqsoud-gomma-42243b224/" target="_blank">LinkedIn</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-button-next swiper-navBtn"></div>
+            <div class="swiper-button-prev swiper-navBtn"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <!-- ################################ -->
+        <section class="py-5 border-bottom" id="next">
+            <div class="container px-5 my-5">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bolder">Department of review and taking opinions</h2>
+                    <p class="lead mb-0">Please, Leave your comment for your opinions about application and if you have some develop as you like...</p>
+                </div>
+                <div class="row gx-5">
+                    <div class="col-lg-8 mb-5 mb-lg-0">
+                        <form method="POST">
+                            {% csrf_token %}
+                            {% bootstrap_form form %}
+                            <br>
+                            <button type="submit" class="btn btn-outline-success w-100">Publish</button>
+                        </form>
+                        <br>
+                        {% for comment in comments reversed %}
+                            <div class="container">
+                                <div class="row py-2">
+                                    <div class="col-md-12">
+                                        <h5 class="thecommentname"><img src="{% static 'img/blank-profile-picture.png' %}" style="width: 40px; height: 40px; border-radius: 50%;"> <a href="/accounts/profile/{{comment.user}}" class="text-decoration-none">{{comment.user.get_short_name}}</a> <span class="text-secondary thedate">{{comment.date|date:'d M o'}}</span></h5>
+                                        <p class="thecomment">{{comment.comment}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% empty %}
+                            <p>No comments yet.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ################################ -->
+        <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa-solid fa-jet-fighter-up"></i></button>
+        <!-- ############################### -->
+        <footer class="py-4 bg-dark">
+            <div class="container px-5"><p class="m-0 text-center text-white">Copyright &copy; Reserved Your Website By Chance Team 2023</p></div>
+            <div class="text-center mt-3 thefooter">
+                <a target="_blank" href="https://www.facebook.com/profile.php?id=100070098455466"><i class="fa-brands fa-facebook"></i></a>
+                <a target="_blank" href="https://github.com/Abdelmaksoude"><i class="fa-brands fa-github"></i></a>
+                <a target="_blank" href="https://www.linkedin.com/in/abdelmaqsoud-gomma-42243b224/"><i class="fa-brands fa-linkedin"></i></a>
+                <a target="_blank" href="https://www.instagram.com/abdelmaksoudeid/"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </footer>
+
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'js/scripts.js' %}"></script>
+        <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+        <script src="{% static 'js/script.js' %}"></script>
+            <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+            <!-- * *                               SB Forms JS                               * *-->
+            <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+            <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>

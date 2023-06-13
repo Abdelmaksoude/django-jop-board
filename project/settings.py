@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-j*c6$7+7pcrt9o^v&%+eb4edme9238m(s3+d6_w5(36z-dwqo5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,13 +38,13 @@ INSTALLED_APPS = [
     'django_filters',
     'contact',
     'rest_framework',
+    'multiselectfield',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
 ]
 
 MIDDLEWARE = [
@@ -143,6 +143,3 @@ EMAIL_HOST_USER = 'abdelmaqsoudgomma@gmail.com'
 EMAIL_HOST_PASSWORD = 'ovycfwomdvqctzll'
 EMAIL_USE_TLS = True
 EMAIL_PORT = '587'
-
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'

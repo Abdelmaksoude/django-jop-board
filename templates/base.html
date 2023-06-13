@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Find Job</title>
+    <title>Chance Website</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -25,182 +25,110 @@
     <link rel="stylesheet" href="{% static 'css/gijgo.css' %}">
     <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/slicknav.css' %}">
-
+    
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
-    <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
-    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <style>
+        .popup
+        {
+            width: 400px;
+            background: rgb(222, 186, 186);
+            border-radius: 10px;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%,-50%) scale(1);
+            text-align: center;
+            padding: 0 30px 30px;
+            color: #333;
+            visibility: visible;
+            transition: all 1s ease-in-out;
+        }
+        .popup img
+        {
+            width: 100px;
+            margin-top: -50px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+        }
+        .popup h2
+        {
+            font-size: 38px;
+            font-weight: 500;
+            margin: 10px 0 10px;
+        }
+        .popup p
+        {
+            font-size: 25px;
+            font-weight: bold;
+            font-family: 'Times New Roman', Times, serif;
+            color: green;
+        }
+    </style>
 </head>
 
 <body>
-    <!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
 
     <!-- header-start -->
-    <header>
-        <div class="header-area ">
-            <div id="sticky-header" class="main-header-area">
-                <div class="container-fluid ">
-                    <div class="header_bottom_border">
-                        <div class="row align-items-center">
-                            <div class="col-xl-3 col-lg-2">
-                                <div class="logo">
-                                    <a href="index.html">
-                                        <img src="img/logo.png" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-7">
-                                <div class="main-menu  d-none d-lg-block">
-                                    <nav>
-                                        <ul id="navigation">
-                                            <li><a href="{% url 'jops:jop_list' %}">Browse Job</a></li>
-                                            <li><a href="{% url 'contact:contact' %}">Contact</a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                                <div class="Appointment">
-                                    {% if request.user.is_authenticated %}
-                                        <div class="phone_num d-none d-xl-block">
-                                            <a href="{% url 'accounts:profile' %}"><i class="fa-solid fa-user"></i> Profile</a>
-                                        </div>
-                                        <div class="phone_num d-none d-xl-block">
-                                            <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i> Log out</a>
-                                        </div>
-                                        <div class="d-none d-lg-block">
-                                            <a class="boxed-btn3" href="{% url 'jops:add_jop' %}">Post a Job</a>
-                                        </div>
-                                    {% else %}
-                                        <div class="phone_num d-none d-xl-block">
-                                            <a href="{% url 'login' %}"><i class="fa-solid fa-right-to-bracket"></i> Log in</a>
-                                        </div>
-                                        <div class="phone_num d-none d-xl-block">
-                                            <a href="{% url 'accounts:signup' %}"><i class="fa-solid fa-user-plus"></i> Sign Up</a>
-                                        </div>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="mobile_menu d-block d-lg-none"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container px-5">
+            <a class="navbar-brand" href="#!"><i class="fa-solid fa-briefcase"></i> Chance</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link hover-underline-animation" aria-current="page" href="{% url 'jops:home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link hover-underline-animation" href="{% url 'jops:jop_list' %}">Browse Jop</a></li>
+                    <li class="nav-item"><a class="nav-link hover-underline-animation" href="{% url 'jops:about' %}">About</a></li>
+                    <li class="nav-item"><a class="nav-link hover-underline-animation" href="{% url 'jops:roadmap' %}">Road Map</a></li>
+                    <li class="nav-item"><a class="nav-link hover-underline-animation" href="{% url 'contact:contact' %}">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    {% if request.user.is_authenticated %}
+                    {% if user.is_staff == True %}
+                    <li class="mt-2">
+                        <a href="{% url 'jops:add_jop' %}"><button class="btn btn-outline-success">Post a Job</button></a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-toggle theprofileedit" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img class="imgprofile" style="height: 40px; width: 40px; border-radius: 50%; margin: auto;" src="{{user.profile.image.url}}">
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="accounts/profile/{{user.username}}">Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">LogOut</a></li>
+                        </ul>
+                    </li>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'accounts:signup' %}"><button type="button" class="btn btn-secondary">Sign Up</button></a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'accounts:signin' %}"><button type="button" class="btn btn-outline-secondary">Login</button></a></li>
+                    {% endif %}
+                </ul>
             </div>
         </div>
-    </header>
+    </nav>
     <!-- header-end -->
 
 {% block body%}
 
 {% endblock body%}
 
-    <!-- footer start -->
-    <footer class="footer">
-        <div class="footer_top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-3 col-md-6 col-lg-3">
-                        <div class="footer_widget wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
-                            <div class="footer_logo">
-                                <a href="#">
-                                    <img src="img/logo.png" alt="">
-                                </a>
-                            </div>
-                            <p>
-                                finloan@support.com <br>
-                                +10 873 672 6782 <br>
-                                600/D, Green road, NewYork
-                            </p>
-                            <div class="socail_links">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <i class="ti-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-google-plus"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-instagram"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-lg-2">
-                        <div class="footer_widget wow fadeInUp" data-wow-duration="1.1s" data-wow-delay=".4s">
-                            <h3 class="footer_title">
-                                Company
-                            </h3>
-                            <ul>
-                                <li><a href="#">About </a></li>
-                                <li><a href="#"> Pricing</a></li>
-                                <li><a href="#">Carrier Tips</a></li>
-                                <li><a href="#">FAQ</a></li>
-                            </ul>
-
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 col-lg-3">
-                        <div class="footer_widget wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".5s">
-                            <h3 class="footer_title">
-                                Category
-                            </h3>
-                            <ul>
-                                <li><a href="#">Design & Art</a></li>
-                                <li><a href="#">Engineering</a></li>
-                                <li><a href="#">Sales & Marketing</a></li>
-                                <li><a href="#">Finance</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6 col-lg-4">
-                        <div class="footer_widget wow fadeInUp" data-wow-duration="1.3s" data-wow-delay=".6s">
-                            <h3 class="footer_title">
-                                Subscribe
-                            </h3>
-                            <form action="#" class="newsletter_form">
-                                <input type="text" placeholder="Enter your mail">
-                                <button type="submit">Subscribe</button>
-                            </form>
-                            <p class="newsletter_text">Esteem spirit temper too say adieus who direct esteem esteems
-                                luckily.</p>
-                        </div>
-                    </div>
-                </div>
+        <!-- ############################### -->
+        <footer class="py-4 bg-dark">
+            <div class="container px-5"><p class="m-0 text-center text-white">Copyright &copy; Reserved Your Website By Chance Team 2023</p></div>
+            <div class="text-center mt-3 thefooter">
+                <a target="_blank" href="https://www.facebook.com/profile.php?id=100070098455466"><i class="fa-brands fa-facebook"></i></a>
+                <a target="_blank" href="https://github.com/Abdelmaksoude"><i class="fa-brands fa-github"></i></a>
+                <a target="_blank" href="https://www.linkedin.com/in/abdelmaqsoud-gomma-42243b224/"><i class="fa-brands fa-linkedin"></i></a>
+                <a target="_blank" href="https://www.instagram.com/abdelmaksoudeid/"><i class="fa-brands fa-instagram"></i></a>
             </div>
-        </div>
-        <div class="copy-right_text wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".3s">
-            <div class="container">
-                <div class="footer_border"></div>
-                <div class="row">
-                    <div class="col-xl-12">
-                        <p class="copy_right text-center">
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://www.facebook.com/profile.php?id=100070098455466" target="_blank">Abdelmaksoud Eid</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+        </footer>
     <!--/ footer end  -->
 
     <!-- link that opens popup -->
@@ -234,8 +162,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="{% static 'js/jquery.validate.min.js' %}"></script>
     <script src="{% static 'js/mail-script.js' %}"></script>
 
-
-    <script src="{% static 'js/main.js' %}"></script>
+        <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <!-- <script src="{% static 'js/main.js' %}"></script> -->
 
 
 	<script>
@@ -252,7 +182,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
                 " - $" + $( "#slider-range" ).slider( "values", 1 ) + "/ Year");
         } );
+
+
+        let popup = document.getElementById("popup");
+            setTimeout(function() {
+                $(popup).fadeOut('fast');
+            }, 3000);
         </script>
+
 </body>
 
 </html>

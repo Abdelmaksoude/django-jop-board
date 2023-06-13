@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
+{% load static %}
 {% block body %}
     <!-- bradcam_area  -->
     <div class="bradcam_area bradcam_bg_1">
@@ -14,7 +15,13 @@
         </div>
     </div>
     <!--/ bradcam_area  -->
-
+    {% for message in messages %}
+        <div class="popup" id="popup">
+            <img src="{% static 'img/404-tick.png' %}" alt="">
+            <h2>Thank You!</h2>
+            <p>Hi {{user.username}} , {{message}}</p>
+        </div>
+    {% endfor %}
     <div class="job_details_area">
         <div class="container">
             <div class="row">
@@ -23,21 +30,145 @@
                         <div class="summery_header">
                             <h3>Profile Summery</h3>
                         </div>
-                        <div class="job_content row">
-                            <div class="imgofprofile col-3">
-                                <img class="imgprofile" style="height: 150px; width: 150px; border-radius: 10%;" src="{{profile.image.url}}">
+                        <div class="job_content row text-center">
+                            <div class="imgofprofile col-md-4">
+                                <img class="imgprofile" style="height: 150px; width: 150px; border-radius: 50%; margin: auto;" src="{{profile.image.url}}">
                             </div>
-                            <ul class="col-9">
-                                <li>Name: <span>{{profile}}</span></li>
-                                <li>Email: <span>{{profile.user.email}}</span></li>
-                                <li>Phone: <span>{{profile.phone_number}}</span></li>
-                                <li>Address: <span>{{profile.city}}</span></li>
+                            <ul class="col-md-8 text-left">
+                                <li>Name: <span>{{profile.user.get_full_name}}</span></li>
+                                <li>The Status: <br><span>{{profile.bio}}</span></li>
                             </ul>
                         </div>
-                        <div class="p-2">
-                            <a href="{% url 'accounts:profile_edit' %}" class="boxed-btn3 w-100">Edit Profile</a>
+                        <hr style="width: 80%; margin: auto;" class="mb-1">
+                        <div>
+                            <h2 class="text-center text-info" style="font-family: Arial, Helvetica, sans-serif;">Personal Information</h2>
+                            <div class="p-1 mt-2 ml-4">
+                                <h4 class="d-inline text-success">Name : </h4>
+                                <p class="d-inline text-secondary">{{profile.user.get_short_name}}</p>
+                            </div>
+                            <div class="p-1 mt-1 ml-4">
+                                <h4 class="d-inline text-success">Birthday : </h4>
+                                <p class="d-inline text-secondary">{{profile.birthday}}</p>
+                            </div>
+                            <div class="p-1 mt-1 ml-4">
+                                <h4 class="d-inline text-success">Nationality : </h4>
+                                <p class="d-inline text-secondary">{{profile.nationality}}</p>
+                            </div>
+                            <div class="p-1 mt-1 ml-4">
+                                <h4 class="d-inline text-success">Gender : </h4>
+                                <p class="d-inline text-secondary">{{profile.gender}}</p>
+                            </div>
                         </div>
+                        <hr style="width: 80%; margin: auto;">
+                        <div>
+                            <h2 class="text-center text-info" style="font-family: Arial, Helvetica, sans-serif;">Your Location</h2>
+                            <div class="p-1 mt-2 ml-4">
+                                <h4 class="d-inline text-success">Country : </h4>
+                                <p class="d-inline text-secondary">{{profile.country}}</p>
+                            </div>
+                            <div class="p-1 mt-1 ml-4">
+                                <h4 class="d-inline text-success">City : </h4>
+                                <p class="d-inline text-secondary">{{profile.city}}</p>
+                            </div>
+                        </div>
+                        <hr style="width: 80%; margin: auto;">
+                        <div>
+                            <h2 class="text-center text-info" style="font-family: Arial, Helvetica, sans-serif;">Contact Information</h2>
+                            <div class="p-1 mt-2 ml-4">
+                                <h4 class="d-inline text-success">Email : </h4>
+                                <p class="d-inline text-secondary">{{profile.user.email}}</p>
+                            </div>
+                            <div class="p-1 mt-1 ml-4">
+                                <h4 class="d-inline text-success">Phone Number : </h4>
+                                <p class="d-inline text-secondary">{{profile.phone_number}}</p>
+                            </div>
+                        </div>
+                        <hr style="width: 80%; margin: auto;">
+                        <div>
+                            <h2 class="text-center text-info" style="font-family: Arial, Helvetica, sans-serif;">Career Interested</h2>
+                            <div class="p-1 mt-2 ml-4">
+                                <h4 class="d-inline text-success">Sutiable jop for me : </h4>
+                                <p class="d-inline text-secondary">{{profile.typejop}}</p>
+                            </div>
+                            <div class="p-1 mt-1 ml-4">
+                                <h4 class="d-inline text-success">I am interested in : </h4>
+                                <p class="d-inline text-secondary">{{profile.categories}}</p>
+                            </div>
+                            <div class="p-1 mt-1 ml-4">
+                                <h4 class="d-inline text-success">Right salary for me : </h4>
+                                <p class="d-inline text-secondary">{{profile.salary}} $</p>
+                            </div>
+                        </div>
+                        <hr style="width: 80%; margin: auto;">
+                        <div>
+                            <h2 class="text-center text-info" style="font-family: Arial, Helvetica, sans-serif;">Professional Information</h2>
+                            <div class="p-1 mt-2 ml-4">
+                                <h4 class="d-inline text-success">Years of experianse : </h4>
+                                <p class="d-inline text-secondary">{{profile.experianceyears}} Years</p>
+                            </div>
+                            <div class="p-1 mt-1 ml-4">
+                                <h4 class="d-inline text-success">Languages : </h4>
+                                <p class="d-inline text-secondary">{{profile.languages}}</p>
+                            </div>
+                            <div class="p-1 mt-2 ml-4">
+                                <h4 class="d-inline text-success">Level of education : </h4>
+                                <p class="d-inline text-secondary">{{profile.leveleducation}}</p>
+                            </div>
+                            <div class="p-1 mt-2 ml-4">
+                                <h4 class="d-inline text-success">Name of faculty : </h4>
+                                <p class="d-inline text-secondary">{{profile.faculty}}</p>
+                            </div>
+                            <div class="p-1 mt-2 ml-4">
+                                <h4 class="d-inline text-success">Department: </h4>
+                                <p class="d-inline text-secondary">{{profile.department}}</p>
+                            </div>
+                            <div class="p-1 mt-2 ml-4">
+                                <h4 class="d-inline text-success"> Graduation Year: </h4>
+                                <p class="d-inline text-secondary">{{profile.graduationyear}}</p>
+                            </div>
+                        </div>
+                        <hr style="width: 80%; margin: auto;">
+                        <div class="my-2 p-1 ml-4">
+                            <h2 class="text-center text-info" style="font-family: Arial, Helvetica, sans-serif;">Curriculum Vitae (CV)</h2>
+                            <h6 class="d-inline text-success">CV : </h6>
+                            {% if profile.cv %}
+                            <a href="{{profile.cv.url}}" target="_blank" class="d-inline text-secondary text-decoration-none">{{profile.cv}}</a>
+                            {% endif %}
+                        </div>
+                        <hr style="width: 80%; margin: auto;">
+                        <div>
+                            <h2 class="text-center text-info" style="font-family: Arial, Helvetica, sans-serif;">Training certificates</h2>
+                            <div class="p-1 mt-2 ml-4">
+                                <h4 class="d-inline text-success">First certificates in: </h4>
+                                <p class="d-inline text-secondary">{{profile.experiance1}} Years</p>
+                            </div>
+                            <div class="p-1 mt-2 ml-4">
+                                <h4 class="d-inline text-success">Second certificates in: </h4>
+                                <p class="d-inline text-secondary">{{profile.experiance2}}</p>
+                            </div>
+                        </div>
+                        <hr style="width: 80%; margin: auto;">
+                        <div class="my-2">
+                            <h2 class="text-center text-info" style="font-family: Arial, Helvetica, sans-serif;">Profile Links</h2>
+                            <div class="p-1 mt-2 ml-4">
+                                <h6 class="d-inline text-success">GitHub : </h6>
+                                <a href="{{profile.githublink}}" target="_blank" class="d-inline text-secondary text-decoration-none">{{profile.githublink}}</a>
+                            </div>
+                            <div class="p-1 mt-2 ml-4">
+                                <h6 class="d-inline text-success">LinkedIn : </h6>
+                                <a href="{{profile.linkedinlink}}" target="_blank" class="d-inline text-secondary text-decoration-none">{{profile.linkedinlink}}</a>
+                            </div>
+                        </div>
+                        {% if user.profile == profile %}
+                        <div class="p-2">
+                            <a href="{% url 'accounts:profile_edit' %}" class="boxed-btn3 w-100 text-decoration-none">Edit Profile</a>
+                        </div>
+                        {% else %}
+                </div>
+                        <p></p>
+                        {% endif %}
                     </div>
+                </div>
                 </div>
             </div>
         </div>
