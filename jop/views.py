@@ -1,10 +1,11 @@
 from django.shortcuts import render , redirect
-from .models import Jop , Comment
+from .models import Jop , Comment , Apply
 from django.core.paginator import Paginator
 from .form import ApplyForm , JopForm , CommentsForm
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .filters import JopFilter
+from django.contrib.auth.models import User
 
 # Create your views here.
 def jop_list(request):
@@ -20,15 +21,18 @@ def jop_list(request):
 @login_required(login_url='accounts:signin')
 def jop_details(request , slug):
     jop_details = Jop.objects.get(slug=slug)
+    num_applications = Apply.objects.filter(jop=jop_details).count()
+    users_applications = Apply.objects.filter(jop=jop_details)
     if request.method=='POST':
         form = ApplyForm(request.POST , request.FILES)
         if form.is_valid():
             myform = form.save(commit=False)
             myform.jop = jop_details
+            myform.name = request.user
             myform.save()
     else:
         form = ApplyForm()
-    context = {'jop': jop_details , 'form':form}
+    context = {'jop': jop_details , 'form':form , 'num_applications':num_applications , 'users_applications':users_applications}
     return render(request , 'jop/jop_details.html' , context)
 
 def jop_details_edit(request , slug):
@@ -65,15 +69,18 @@ def add_jop(request):
 def home(request):
     return render(request , 'jop/index.html' , {"home": home})
 
-@login_required(login_url='accounts:signin')
+
 def about(request):
     if request.method == 'POST':
-        form = CommentsForm(request.POST)
-        if form.is_valid():
-            form = form.save(commit=False)
-            form.user = request.user
-            form.save()
-            return redirect('jops:about')
+        if request.user.is_authenticated:
+            form = CommentsForm(request.POST)
+            if form.is_valid():
+                form = form.save(commit=False)
+                form.user = request.user
+                form.save()
+                return redirect('jops:about')
+        else:
+            return redirect('accounts:signin')
     else:
         form = CommentsForm()
     comments = Comment.objects.all()
@@ -86,6 +93,3 @@ def about(request):
 
 def roadmap(request):
     return render(request , 'jop/roadmap.html' , {"roadmap": roadmap})
-
-def error_404(request, exception):
-    return render(request, 'jop/page_not_found.html')

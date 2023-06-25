@@ -4,7 +4,8 @@ from .models import Apply , Jop , Comment
 class ApplyForm(forms.ModelForm):
     class Meta:
         model = Apply
-        fields = ['name','email','website','cv','cover_letter']
+        fields = ('cover_letter' , )
+        exclude = ('name' , )
 
 class JopForm(forms.ModelForm):
     class Meta:

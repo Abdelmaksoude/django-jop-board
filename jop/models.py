@@ -48,15 +48,12 @@ class Category(models.Model):
 
 class Apply(models.Model):
     jop = models.ForeignKey(Jop , related_name='apply_jop' , on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
-    email = models.EmailField(max_length=50)
-    website = models.URLField()
-    cv = models.FileField(upload_to='apply/')
+    name = models.ForeignKey(User , related_name='user_apply_jop' , on_delete=models.CASCADE)
     cover_letter = models.TextField(max_length=500)
     creted_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
     
 class Comment(models.Model):
     user = models.ForeignKey(User , on_delete=models.CASCADE)

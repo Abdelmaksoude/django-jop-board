@@ -85,3 +85,7 @@ def profile_edit(request):
 def logout(request):
     auth.logout(request)
     return redirect('/')
+
+def users(request):
+    users = Profile.objects.all()
+    return render(request , 'accounts/users.html' , {'users':users})

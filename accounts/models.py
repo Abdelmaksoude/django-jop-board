@@ -56,6 +56,7 @@ CATOGRIES = (
     ('Full-stack development','Full-stack development'),
     ('Mobile development','Mobile development'),
     ('Data science','Data science'),
+    ('Graphic Designer','Graphic Designer'),
 )
 
 YEARSEXPERIANCE = (
@@ -126,7 +127,7 @@ WORKTIME = (
 
 class Profile(models.Model):
     user = models.OneToOneField(User , on_delete=models.CASCADE)
-    bio = models.CharField(max_length=1000)
+    bio = models.CharField(max_length=6000)
     country = models.CharField(choices=COUNTRY , max_length=100)
     city = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=15)
